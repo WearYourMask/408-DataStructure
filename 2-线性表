@@ -1,1 +1,18 @@
-2.3 线性表的链式表示
+1. 指针的回顾：现有一int型变量int a = 3，有一int型指针int * b，且int * b = a。则*b = 3，b = &a。
+2. 单链表结点的定义
+        typedef struct LNode{
+                Elemtype data;
+                struct LNode *next;
+                }LNode, *LinkList
+对于这个定义，我们应知晓
+        2.1 使用了别名
+        2.2 LinkList与LNode *是等价的。前者表示这是一个线性表，后者表示这是一个结点。
+        2.3 这种写法是简写，正常的写法是
+                struct LNode{
+                        Elemtype data;
+                        strutc LNode *next}
+                typedef struct LNode LNode;
+                typedef struct LNode *LinkList；
+
+
+        
