@@ -53,7 +53,5 @@
                 }
                 r -> next = NULL;
                 return L;
-                
-                
                 }
         
