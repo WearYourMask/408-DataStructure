@@ -41,6 +41,18 @@
                 LinkList List_TailInsert(LinkList &L){
                 int x;
                 L = (LinkList) malloc(sizeof(LNode));
+                LNode *s, *r = L; // *r是表尾指针
+                scanf("%d", &x);
+                
+                while(x != 9999){
+                        s = (LNode) malloc(sizeof(LNode));
+                        s -> data = x;
+                        r ->next = s; // 注意这里，因为已经将s赋给了L指针指向的节点，所以r在下一步可以进行移动
+                        r = s;
+                        scanf("%d", &x);
+                }
+                r -> next = NULL;
+                return L;
                 
                 
                 }
