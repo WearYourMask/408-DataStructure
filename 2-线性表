@@ -55,3 +55,55 @@
                 return L;
                 }
         
+4. 查找
+        4.1 按序号查找值：以表头开始顺序查找，直到第i个节点为止。若没有第i个节点，则返回最后一个节点的指针与 Null。
+		LNode * GetElem(LinkList L, int i){
+			int j = 1; //计数器
+			LNode *p = L -> next;
+			
+			//为保证代码的健壮性，现在分别考虑输入的值为0与小于0的情况
+			if (i == 0)
+				return L;
+			if (i < 1)
+				return NULL;
+
+			// 开始寻找
+			while (p && j < i){
+				p = p -> next;
+				j++;
+			}
+			return L;
+		}
+	4.2 按元素返回序号：以表头开始顺序查找，依次对比数据域中的数据直到找到并返回其指针，若没有则返回NULL。
+		LNode * LocateElem(LinkList L, ElemType e){
+			LNode *p = L -> next;
+			while (p -> data != e && p != NULL) // 注意：有些数据类型并不支持使用“!=”进行比较
+				p = p -> next;
+			return p;
+		}
+
+5. 插入与删除
+	5.1 插入节点：首先处理后面的节点，再处理前面的节点，顺序并不能够颠倒。在想要插入的节点i的前一个结点上进行后插操作。
+		LNode * InsertElem(LinkList &L, int i-1){
+			// 注意：使用GetElem时，会检查位置的合法性
+			LNode * p = GetElem(L, i-1);
+
+			// ...定义新插入的节点*s...
+			s -> next = p -> next;
+			p -> next = s;
+		}
+	5.2 删除节点
+		5.2.1 使用前驱节点删除（代码片段，整体结构见5.1）
+			// ...*p指向被删除结点的前一个结点，*q指向被删除的结点
+			p = GetElem(L, i-1);
+			q = p -> next;
+			p -> next = q -> next;
+			free(q);
+		5.2.2 直接将后继节点赋给需要删除的结点（删除需要删除的结点的后继节点），这种方法的时间复杂度是O(1)
+			// ...*q指向当前删除的结点，*p指向需要删除节点的后继结点
+			q = p -> next;
+			p -> data = p -> next -> data;
+			p -> next = q -> next;
+			free(q);
+		5.2.3
+	
